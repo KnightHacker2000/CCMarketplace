@@ -6,7 +6,7 @@ import { StockItemComponent } from './stock/stock-item/stock-item.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
   declarations: [
