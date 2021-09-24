@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Stock } from './model/stock';
 
 @Component({
@@ -6,7 +6,10 @@ import { Stock } from './model/stock';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnChanges, OnDestroy,
+                                     DoCheck, AfterContentChecked,
+                                     AfterContentInit, AfterViewChecked,
+                                     AfterViewInit{
   title = 'Breakfast In Bed';
 
   public stockarr: Array<Stock>;
@@ -19,5 +22,29 @@ export class AppComponent implements OnInit{
       new Stock('Mango Milkshake', "Fresh mango, Milk and Tea!", "MM", 7, "Cup", "../../assets/mango-milkshake.jpeg"),
       new Stock('Americano Coffee', "Original American Flavor!", "AC", 8, "Cup", "../../assets/americano.jpeg")
     ];
+  }
+
+  // lifcycle hooks
+
+  ngAfterViewInit(): void {
+    // console.log('App Component - After View Init');
+  }
+  ngAfterViewChecked(): void {
+    // console.log('App Component - After View Checked');
+  }
+  ngAfterContentInit(): void {
+    // console.log('App Component - After Content Init');
+  }
+  ngAfterContentChecked(): void {
+    // console.log('App Component - After Content Checked');
+  }
+  ngDoCheck(): void {
+    // console.log('App Component - Do Check');
+  }
+  ngOnDestroy(): void {
+    // console.log('App Component - On Destroy');
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log('App Component - On Changes - ', changes);
   }
 }

@@ -2,16 +2,21 @@
   <div class="name">{{stock.name + ' (' + stock.code + ')'}}</div>
   <div class="description">{{stock.description}}</div>
   <div class="price"
-       [class]="positiveChange ? 'positive' : 'negative'">$ {{stock.price}}/{{stock.unit}}</div>
-       <img src={{stock.imgsrc}} alt=string.concat({{stock.name}} class="productImg">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
-    <span class="input-group-text" id="basic-addon2">{{stock.unit}}</span>
-    <button class="btn btn-dark" (click)="incrementOrderAmount()">+</button>
-    <button class="btn btn-dark" (click)="decrementOrderAmount()">-</button>
+       [class]="positiveChange ? 'positive' : 'negative'">$ {{stock.price}}/{{stock.unit}}
   </div>
+
+  <!-- Use this to try *ngIf <img src={{stock.imgsrc}} alt=string.concat({{stock.name}} class="productImg" *ngIf="stock.price>10"> -->
+  <img src={{stock.imgsrc}} alt=string.concat({{stock.name}} class="productImg">
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="amount" aria-label="" aria-describedby="basic-addon2" [(ngModel)]="amountArr[i]">
+    <span class="input-group-text" id="basic-addon2">{{stock.unit}}</span>
+    <button class="btn btn-dark" (click)="incrementOrderAmount(i)">+</button>
+    <button class="btn btn-dark" (click)="decrementOrderAmount(i)">-</button>
+  </div>
+
   <!-- <button type="button" class="btn btn-primary" (click)="onAddToCart($event)">Add to Cart</button> -->
   <!-- at receiver side-- (AddToCart($event))="onAddToCart($event)" -->
-  <button type="button" class="btn btn-primary">Add to Cart</button>
+  <button type="button" class="btn btn-primary" (click)="onAddToCart(i)">Add to Cart</button>
 </div>
 
