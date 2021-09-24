@@ -1,4 +1,5 @@
 import { Component, EventEmitter,ChangeDetectionStrategy, Input, OnInit, SimpleChanges, OnChanges, OnDestroy, DoCheck, AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { OrderService } from '../../services/order.service';
 import { Stock } from 'src/app/model/stock';
 import { Order } from 'src/app/model/order';
 import { Item } from 'src/app/model/item';
@@ -28,9 +29,7 @@ AfterViewInit {
   // @Output() private addToCart: EventEmitter<Stock>;
 
 
-  constructor() {
-    // this.addToCart = new EventEmitter<Stock>()
-  }
+  constructor(private orderService: OrderService) { }
 
   onAddToCart(index: number) {
     // console.log('We are toggling the favorite state for this stock', event, i);
@@ -51,6 +50,13 @@ AfterViewInit {
     
   }
 
+  onGoToShipping() {
+    // this.order.itemArr = new Array<Item>();
+    this.order.createItemArr(this.itemArr);
+    // this.order.itemArr[0] = new Item('sff',3);
+    this.orderService.createOrder(this.order);
+  }
+
   incrementOrderAmount(index: number) {
     // this.stock.price += 5;
     this.amountArr[index]++;
@@ -67,7 +73,9 @@ AfterViewInit {
     // initialize the order amount array
     this.amountArr = [0,0,0,0,0];
     this.itemArr = new Array<Item>(5);
+    
     // console.log('item arr: ',this.order.itemArr);
+    this.order = new Order();
   } 
 
   ngAfterViewInit(): void {
