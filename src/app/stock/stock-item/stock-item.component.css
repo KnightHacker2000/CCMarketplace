@@ -1,0 +1,27 @@
+.stock-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+    margin-top:10px;
+    margin-left:5px;
+    margin-right:5px;
+  }
+  
+  .stock-container .name h3, .stock-container .name h4 {
+    display: inline-block;
+  }
+  
+  .positive {
+    color: green;
+  }
+  
+  .negative {
+    color: red;
+  }
+
+  .productImg{
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px;
+  }
