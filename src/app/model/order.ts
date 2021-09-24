@@ -2,7 +2,7 @@ import { Item } from './item';
 
 export class Order {
 
-    constructor(public itemArr: Array<Item>
-        ) {}
+    constructor(public itemArr: Item[]
+    ) {}
 
 }

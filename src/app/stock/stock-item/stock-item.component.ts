@@ -1,5 +1,8 @@
 import { Component, EventEmitter,ChangeDetectionStrategy, Input, OnInit, SimpleChanges, OnChanges, OnDestroy, DoCheck, AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { Stock } from 'src/app/model/stock';
+import { Order } from 'src/app/model/order';
+import { Item } from 'src/app/model/item';
+
 
 @Component({
   selector: 'app-stock-item',
@@ -19,6 +22,8 @@ AfterViewInit {
   public previousPrice: number;
   public positiveChange: boolean;
   public favorite: boolean;
+  public order: Order;
+  public itemArr: Array<Item>;
   @Input() public stocks: Array<Stock>;
   // @Output() private addToCart: EventEmitter<Stock>;
 
@@ -32,13 +37,22 @@ AfterViewInit {
     // this.stocks[i].favorite = !this.stocks[i].favorite;
     
     // this.addToCart.emit(this.order);
+    if(this.amountArr[index] != 0){
+      if (typeof this.itemArr[index] != 'undefined' && this.itemArr[index] !== null) {
+        this.itemArr[index].amount = this.amountArr[index];
+      } else{
+        let item = new Item(this.stocks[index].code,this.amountArr[index]);
+        this.itemArr[index] = item;
+      }
+  
+      console.log('Order array updated; ', this.itemArr);
+    }
+
     
-    console.log('Order amount: ',this.amountArr);
   }
 
   incrementOrderAmount(index: number) {
     // this.stock.price += 5;
-
     this.amountArr[index]++;
   }
 
@@ -52,6 +66,8 @@ AfterViewInit {
   ngOnInit() {
     // initialize the order amount array
     this.amountArr = [0,0,0,0,0];
+    this.itemArr = new Array<Item>(5);
+    // console.log('item arr: ',this.order.itemArr);
   } 
 
   ngAfterViewInit(): void {
