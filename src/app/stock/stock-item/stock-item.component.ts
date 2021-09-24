@@ -24,6 +24,7 @@ AfterViewInit {
   public favorite: boolean;
   public order: Order;
   public itemArr: Array<Item>;
+  public stockArr: Array<Stock>;
   @Input() public stocks: Array<Stock>;
   // @Output() private addToCart: EventEmitter<Stock>;
 
@@ -68,6 +69,13 @@ AfterViewInit {
     this.amountArr = [0,0,0,0,0];
     this.itemArr = new Array<Item>(5);
     // console.log('item arr: ',this.order.itemArr);
+    this.stockArr = [
+      new Stock('Taro Milk Tea', "Taro! Taro! Taro!", "TMT", 15, "Cup", "../../assets/taro-milk-bubble-tea.jpeg"),
+      new Stock('Hong Kong Milk Tea', "OG Milk Tea", "HKMT", 10, "Cup", "../../assets/hong-kong-milk-tea.jpeg"),
+      new Stock('Caramel Pudding Milk Tea', "Fusion Tea!", "CPMT", 6, "Cup",  "../../assets/caramel.jpeg"),
+      new Stock('Mango Milkshake', "Fresh mango, Milk and Tea!", "MM", 7, "Cup", "../../assets/mango-milkshake.jpeg"),
+      new Stock('Americano Coffee', "Original American Flavor!", "AC", 8, "Cup", "../../assets/americano.jpeg")
+    ];
   } 
 
   ngAfterViewInit(): void {
