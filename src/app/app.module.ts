@@ -7,11 +7,13 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     StockItemComponent,
     ContactFormComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
