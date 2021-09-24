@@ -5,10 +5,7 @@ export class Stock {
                 public description: string,
                 public code: string,
                 public price: number,
-                public previousPrice: number,
-                public unit: string,) {}
+                public unit: string,
+                public imgsrc: string) {}
   
-    isPositiveChange(): boolean {
-      return this.price >= this.previousPrice;
-    }
   }

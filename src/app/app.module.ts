@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { StockItemComponent } from './stock/stock-item/stock-item.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
-import { SummaryComponent } from './summary/summary.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SummaryComponent } from './summary/summary.component';
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,               
     AppRoutingModule
   ],
   providers: [],
