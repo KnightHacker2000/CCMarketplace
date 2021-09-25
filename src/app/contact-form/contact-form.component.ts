@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  onGoToSummary() {
+    this.router.navigate(['/summary']);
+  }
 
   ngOnInit(): void {
   }
