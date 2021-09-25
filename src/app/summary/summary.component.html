@@ -18,8 +18,19 @@
         </table>
 
         <p>Shipping Info: </p>
+        <ul class="list-group">
+          <li class="list-group-item">Postal: {{ shipping.postal }} </li>
+          <li class="list-group-item">Shipping Method: {{ shipping.method }}</li>
+          <li class="list-group-item">Email: {{ shipping.email }}</li>
+          <li class="list-group-item">Fee: {{ shipping.fee }}</li>
+        </ul>
 
         <p>Payment Info: </p>
+        <ul class="list-group">
+          <li class="list-group-item">Amount: {{ payment.amount }} </li>
+          <li class="list-group-item">Payment: {{ payment.cardNum }}</li>
+          <li class="list-group-item">Name: {{ payment.name }}</li>
+        </ul>
 
     </div>
 </div>

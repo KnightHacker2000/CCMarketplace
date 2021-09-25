@@ -8,7 +8,10 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SummaryComponent } from './summary/summary.component';
 import { OrderService } from './services/order.service';
+import { ShippingformComponent } from './shippingform/shippingform.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { PaymentService } from './services/contact.service';
+import { ShippingService } from './services/shipping.service';
 
 
 @NgModule({
@@ -17,7 +20,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     StockItemComponent,
     ContactFormComponent,
     SummaryComponent,
-    ConfirmationComponent,
+    ShippingformComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     FormsModule,               
     AppRoutingModule
   ],
-  providers: [OrderService],
+  providers: [OrderService, PaymentService, ShippingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

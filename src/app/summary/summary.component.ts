@@ -2,6 +2,12 @@ import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Order } from '../model/order';
 import { Item } from '../model/item';
+import { Shipping } from '../model/shipping';
+import {ShippingService} from '../services/shipping.service'
+import { Payment } from '../model/payment';
+import { PaymentService } from '../services/contact.service'
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-summary',
@@ -11,8 +17,12 @@ import { Item } from '../model/item';
 export class SummaryComponent implements OnInit, AfterViewChecked{
   public items: Array<String>
   public numbers: Array<Number>
-  constructor(private orderService: OrderService ) {
+  public shipping: Shipping
+  public payment: Payment
+  constructor(private orderService: OrderService, private shippingService: ShippingService, private paymentService: PaymentService, private router: Router) {
     var itemArray = this.orderService.getOrder().itemArr;
+    this.shipping = this.shippingService.getShip();
+    this.payment = this.paymentService.getPayment();
     this.items = new Array();
     this.numbers = new Array();
     for (var i = 0; i < itemArray.length ; i++){
@@ -39,11 +49,13 @@ export class SummaryComponent implements OnInit, AfterViewChecked{
         this.numbers.push(itemArray[i].amount);
       }
       
+
+
     }
   }
   
   onContinue(){
-    console.log( this.orderService.getOrder());
+    this.router.navigate(["/confirmation"]);
   }
   ngAfterViewChecked() {
     console.log( this.orderService.getOrder());

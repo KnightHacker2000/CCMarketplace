@@ -63,7 +63,7 @@ AfterViewInit {
     // this.order.itemArr[0] = new Item('sff',3);
     this.orderService.createOrder(this.order);
     console.log('Order: ',this.orderService.getOrder());
-    this.router.navigate(['/summary']);
+    this.router.navigate(['/shippingform']);
   }
 
   incrementOrderAmount(index: number) {

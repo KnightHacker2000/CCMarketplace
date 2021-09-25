@@ -1,6 +1,6 @@
 export class Shipping {
 
-    constructor(public address: string,
+    constructor(
         public postal: string,
         public method: string,
         public email: string,
