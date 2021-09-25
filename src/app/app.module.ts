@@ -8,6 +8,7 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SummaryComponent } from './summary/summary.component';
 import { OrderService } from './services/order.service';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { OrderService } from './services/order.service';
     StockItemComponent,
     ContactFormComponent,
     SummaryComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

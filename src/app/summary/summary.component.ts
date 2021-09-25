@@ -16,8 +16,26 @@ export class SummaryComponent implements OnInit, AfterViewChecked{
     this.items = new Array();
     this.numbers = new Array();
     for (var i = 0; i < itemArray.length ; i++){
-      if (itemArray[i] != null){
-        this.items.push(itemArray[i].stock_code);
+      if (itemArray[i].amount != 0){
+        var code = itemArray[i].stock_code;
+        var str = "";
+        if (code === "TMT"){
+          str = "Taro Milk Tea";
+        }
+        else if (code === "HKMT"){
+          str = "Hong Kong Milk Tea";
+        }
+        else if (code === "CPMT"){
+          str = "Caramel Pudding Milk Tea";
+        }
+        else if (code === "MM"){
+          str = "Mango Milkshake";
+        }
+        else if (code === "AC"){
+          str = "Americano Coffee"
+        }
+
+        this.items.push(str);
         this.numbers.push(itemArray[i].amount);
       }
       

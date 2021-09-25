@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ContactFormComponent} from "./contact-form/contact-form.component";
 import { StockItemComponent } from './stock/stock-item/stock-item.component';
 import { SummaryComponent } from './summary/summary.component';
@@ -7,7 +8,8 @@ import { SummaryComponent } from './summary/summary.component';
 const routes: Routes = [
   {path: 'checkoutform', component: ContactFormComponent},
   {path: 'summary', component: SummaryComponent}, 
-  {path: 'stock', component: StockItemComponent}
+  {path: 'stock', component: StockItemComponent}, 
+  {path: 'confirmation', component: ConfirmationComponent}
 ];
 
 @NgModule({
