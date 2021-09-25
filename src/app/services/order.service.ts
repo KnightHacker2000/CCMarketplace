@@ -12,9 +12,10 @@ export class OrderService {
 
   createOrder(order: Order) {
     this.orderArr.push(order);
+    console.log(this.orderArr);
   }
 
-  getOrder(){
+  getOrder(): Array<Order> {
     return this.orderArr;
   }
 }
