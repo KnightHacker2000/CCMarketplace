@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Payment } from 'src/app/model/payment';
 import { PaymentService } from '../services/contact.service';
+import { OrderService } from '../services/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -17,11 +18,11 @@ export class ContactFormComponent implements OnInit {
   public cvv: string;
   public name: string;
   public payment: Payment;
-  constructor(private paymentService: PaymentService, private router: Router) { }
+  constructor(private paymentService: PaymentService, private orderService: OrderService, private router: Router) { }
   
 
   ngOnInit(): void {
-    this.amount = 0;
+    this.amount = this.orderService.getOrderSum();
     this.cardNum = "";
     this.exp = "";
 
