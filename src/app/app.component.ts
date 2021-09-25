@@ -1,4 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { OrderService } from './services/order.service';
 import { Stock } from './model/stock';
 
 @Component({
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit, OnChanges, OnDestroy,
   title = 'Breakfast In Bed';
 
   public stockarr: Array<Stock>;
+  constructor(private orderService: OrderService) { }
   
   ngOnInit(): void{
     this.stockarr = [
@@ -22,10 +24,10 @@ export class AppComponent implements OnInit, OnChanges, OnDestroy,
       new Stock('Mango Milkshake', "Fresh mango, Milk and Tea!", "MM", 7, "Cup", "../../assets/mango-milkshake.jpeg"),
       new Stock('Americano Coffee', "Original American Flavor!", "AC", 8, "Cup", "../../assets/americano.jpeg")
     ];
+
   }
 
   // lifcycle hooks
-
   ngAfterViewInit(): void {
     // console.log('App Component - After View Init');
   }

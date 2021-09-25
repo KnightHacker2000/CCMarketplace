@@ -7,6 +7,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SummaryComponent } from './summary/summary.component';
+import { OrderService } from './services/order.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { SummaryComponent } from './summary/summary.component';
     FormsModule,               
     AppRoutingModule
   ],
-  providers: [],
+  providers: [OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
