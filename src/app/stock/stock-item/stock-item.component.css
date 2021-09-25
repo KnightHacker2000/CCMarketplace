@@ -6,6 +6,7 @@
     margin-top:10px;
     margin-left:5px;
     margin-right:5px;
+    max-width: 80%;
   }
   
   .stock-container .name h3, .stock-container .name h4 {
@@ -25,3 +26,7 @@
     max-height: 200px;
     margin: 10px;
   }
+
+ .container{
+  margin-top:10px;
+ }
