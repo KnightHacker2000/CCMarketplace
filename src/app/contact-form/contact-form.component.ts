@@ -31,7 +31,7 @@ export class ContactFormComponent implements OnInit {
     this.cardNum = (document.getElementById("cardNumber") as HTMLInputElement).value;
     this.exp = (document.getElementById("expDate") as HTMLInputElement).value;
     this.cvv = (document.getElementById("securityCode") as HTMLInputElement).value;
-    this.router.navigate(['/shippingform']);
+    this.router.navigate(['/summary']);
   }
 
 }

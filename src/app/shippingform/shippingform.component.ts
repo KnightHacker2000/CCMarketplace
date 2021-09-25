@@ -28,7 +28,7 @@ export class ShippingformComponent implements OnInit {
     this.postal = (document.getElementById("postalAddr") as HTMLInputElement).value;
     this.method = (document.getElementById("shippingMethod") as HTMLInputElement).value;
     this.email = (document.getElementById("emailAddr") as HTMLInputElement).value;
-    this.router.navigate(['/summary']);
+    this.router.navigate(['/checkoutform']);
   }
 
 }
