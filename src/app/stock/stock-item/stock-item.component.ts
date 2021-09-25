@@ -25,7 +25,7 @@ AfterViewInit {
   public positiveChange: boolean;
   public favorite: boolean;
   public order: Order;
-  public itemArr: Array<Item>;
+  public itemArr: Array<Item> = [];
   public stocks: Array<Stock>;
   // @Input() public stocks: Array<Stock>;
   // @Output() private addToCart: EventEmitter<Stock>;
@@ -38,16 +38,16 @@ AfterViewInit {
     // this.stocks[i].favorite = !this.stocks[i].favorite;
     
     // this.addToCart.emit(this.order);
+    
     if(this.amountArr[index] != 0){
-      if (typeof this.itemArr[index] != 'undefined' && this.itemArr[index] !== null) {
         this.itemArr[index].amount = this.amountArr[index];
-      } else{
-        let item = new Item(this.stocks[index].code,this.amountArr[index]);
-        this.itemArr[index] = item;
-      }
-  
       console.log('Order array updated; ', this.itemArr);
+    }else{
+        if(this.itemArr[index].amount !=0){
+          this.itemArr[index].amount = 0;
+        }
     }
+
     // } else{
     //   if (typeof this.itemArr[index] != 'undefined' && this.itemArr[index] !== null) {
     //     this.itemArr[index].amount = 0;
@@ -79,12 +79,6 @@ AfterViewInit {
 
   // lifecycle hooks
   ngOnInit() {
-    // initialize the order amount array
-    this.amountArr = [0,0,0,0,0];
-    this.itemArr = new Array<Item>(5);
-    this.order = new Order();
-    
-    // console.log('item arr: ',this.order.itemArr);
     this.stocks = [
       new Stock('Taro Milk Tea', "Taro! Taro! Taro!", "TMT", 15, "Cup", "../../assets/taro-milk-bubble-tea.jpeg"),
       new Stock('Hong Kong Milk Tea', "OG Milk Tea", "HKMT", 10, "Cup", "../../assets/hong-kong-milk-tea.jpeg"),
@@ -92,6 +86,16 @@ AfterViewInit {
       new Stock('Mango Milkshake', "Fresh mango, Milk and Tea!", "MM", 7, "Cup", "../../assets/mango-milkshake.jpeg"),
       new Stock('Americano Coffee', "Original American Flavor!", "AC", 8, "Cup", "../../assets/americano.jpeg")
     ];
+
+    // initialize the order amount array
+    this.amountArr = [0,0,0,0,0];
+    for(let i = 0; i < 5; i++){
+      this.itemArr[i] = new Item(this.stocks[i].code,0);
+    }
+    this.order = new Order();
+    
+    // console.log('item arr: ',this.order.itemArr);
+   
   } 
 
   ngAfterViewInit(): void {

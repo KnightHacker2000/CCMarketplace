@@ -35,7 +35,7 @@
                 <h6 class="my-0">{{stocks[j].name}}</h6>
                 <small class="text-muted">{{stocks[j].description}}</small>
               </div>
-            <span class="text-muted">{{item.amount}}{{stocks[j].unit}}</span>
+            <span class="text-muted">{{item.amount}} {{stocks[j].unit}}</span>
           <!-- </div> -->
         </li>
         <!-- <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -64,15 +64,15 @@
           <strong>$20</strong>
         </li> -->
       </ul>
+      <button type="button" class="btn btn-primary" (click)="onGoToShipping()" style="text-align:center">Check Out</button>
 
-      <form class="card p-2">
+      <!-- <form class="card p-2">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Promo code">
           <button type="submit" class="btn btn-secondary">Redeem</button>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </div>
-<button type="button" class="btn btn-primary" (click)="onGoToShipping()" style="text-align:center">Go to Shipping</button>
 
