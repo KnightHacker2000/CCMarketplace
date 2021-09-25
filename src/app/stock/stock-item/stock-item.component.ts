@@ -48,6 +48,11 @@ AfterViewInit {
   
       console.log('Order array updated; ', this.itemArr);
     }
+    // } else{
+    //   if (typeof this.itemArr[index] != 'undefined' && this.itemArr[index] !== null) {
+    //     this.itemArr[index].amount = 0;
+    //   } 
+    // }
 
     
   }
@@ -58,7 +63,7 @@ AfterViewInit {
     // this.order.itemArr[0] = new Item('sff',3);
     this.orderService.createOrder(this.order);
     console.log('Order: ',this.orderService.getOrder());
-    this.router.navigate(['/checkoutform']);
+    this.router.navigate(['/summary']);
   }
 
   incrementOrderAmount(index: number) {
