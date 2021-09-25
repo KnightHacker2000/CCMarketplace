@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Payment } from 'src/app/model/payment';
+import { PaymentService } from '../services/contact.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-contact-form',
@@ -6,10 +11,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
-
-  constructor() { }
+  public amount: number;
+  public cardNum: string;
+  public exp: string;
+  public cvv: string;
+  public name: string
+  constructor(private paymentService: PaymentService, private router: Router) { }
+  
 
   ngOnInit(): void {
+    this.amount = 0;
+    this.cardNum = "";
+    this.exp = "";
+
+    
+  }
+  onGoToSubmit() {
+    this.name = (document.getElementById("firstName") as HTMLInputElement).value+(document.getElementById("lastName") as HTMLInputElement).value
+    this.cardNum = (document.getElementById("cardNumber") as HTMLInputElement).value;
+    this.exp = (document.getElementById("expDate") as HTMLInputElement).value;
+    this.cvv = (document.getElementById("securityCode") as HTMLInputElement).value;
+    this.router.navigate(['/shippingform']);
   }
 
 }
