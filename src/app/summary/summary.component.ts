@@ -29,6 +29,8 @@ export class SummaryComponent implements OnInit, AfterViewChecked{
       if (itemArray[i].amount != 0){
         var code = itemArray[i].stock_code;
         var str = "";
+        
+        // the following code will be updated once we started to work on the database
         if (code === "TMT"){
           str = "Taro Milk Tea";
         }
