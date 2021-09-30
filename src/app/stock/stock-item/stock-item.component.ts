@@ -61,8 +61,13 @@ AfterViewInit {
     // this.order.itemArr = new Array<Item>();
     this.order.createItemArr(this.itemArr);
     // this.order.itemArr[0] = new Item('sff',3);
-    this.orderService.createOrder(this.order);
     console.log('Order: ',this.orderService.getOrder());
+    let sum = 0;
+    for(let i=0; i<this.order.itemArr.length;i++){
+      sum += this.stocks[i].price * this.order.itemArr[i].amount;
+    }
+    this.orderService.createOrder(this.order, sum);
+    console.log('Sum: ',sum);
     this.router.navigate(['/shippingform']);
   }
 
