@@ -1,37 +1,57 @@
-<p>Summary: </p>
-<div class="card" style="width: 80%">
-    <div class="card-body">
-        <p>Items: </p>
-        <table class="table">
-            <thead>
-                <tr>
-                  <th scope="col">Item</th>
-                  <th scope="col">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of items; let i = index">
-                    <td>{{ item }}</td>
-                    <td>{{ numbers[i] }}</td>
-                </tr>
-              </tbody>
-        </table>
 
-        <p>Shipping Info: </p>
+<div class="container">
+  <div class="row">
+    <h5 class="card-title">Summary: </h5>
+    <div class="card" style="width: 80%">
+      <div class="card-body">
+          <p>Items: </p>
+          <table class="table">
+              <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of items; let i = index">
+                      <td>{{ item }}</td>
+                      <td>{{ numbers[i] }}</td>
+                  </tr>
+                </tbody>
+          </table>
+      </div>
+    </div>
+  </div>  
+
+  
+  <div class="row">
+    <div class="col">
+      <h5 class="card-title">Shipping Info: </h5>
+      <div class="card" style="width: 80%">
         <ul class="list-group">
           <li class="list-group-item">Postal: {{ shipping.postal }} </li>
           <li class="list-group-item">Shipping Method: {{ shipping.method }}</li>
           <li class="list-group-item">Email: {{ shipping.email }}</li>
           <li class="list-group-item">Fee: {{ shipping.fee }}</li>
         </ul>
-
-        <p>Payment Info: </p>
+      </div>
+          
+    </div>
+    <div class="col">
+      <h5 class="card-title">Payment Info: </h5>
+      <div class="card" style="width: 80%">
         <ul class="list-group">
           <li class="list-group-item">Amount: {{ payment.amount }} </li>
           <li class="list-group-item">Payment: {{ payment.cardNum }}</li>
           <li class="list-group-item">Name: {{ payment.name }}</li>
         </ul>
-
+      </div>
+          
     </div>
+  </div>
+
 </div>
-<button type="button" class="btn btn-lg btn-primary" (click)="onContinue()">Continue</button>
+
+<div class="d-flex justify-content-center">
+  <button type="button" class="btn btn-lg btn-primary" (click)="onContinue()">Confirm</button>
+</div>
