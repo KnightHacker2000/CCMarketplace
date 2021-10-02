@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ContactFormComponent} from "./contact-form/contact-form.component";
+import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { ShippingformComponent } from './shippingform/shippingform.component';
 import { StockItemComponent } from './stock/stock-item/stock-item.component';
@@ -15,6 +16,8 @@ const routes: Routes = [
   {path: 'shippingform', component: ShippingformComponent},
   {path: 'confirmation', component: ConfirmationComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'confirmation', component: ConfirmationComponent}, 
+  {path: 'contact', component: ContactComponent},
   {path: 'home', component: HomeComponent}
 ];
 

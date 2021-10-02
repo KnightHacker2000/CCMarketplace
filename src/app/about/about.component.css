@@ -2,8 +2,7 @@
 body{ 
 background-color:#0A4A8A;
 }
-h1
-{
+h1{
   color:rgb(0, 0, 0);
   text-align:center;
   margin-top:10%;
@@ -20,7 +19,6 @@ p {
   height:100%;
   width:100%;
   opacity:0;
-
 }
 
 .tabs{
@@ -99,16 +97,16 @@ color:white;
 /*==================================================
   Background color for each different div
   =================================================*/
-#html-bg{
+#tab1-bg{
   background-color:#a1cce9;
 }
-#js-bg{
+#tab2-bg{
   background: linear-gradient(to right, #e5f0ef, #86d3ff);;
 }
-#css-bg{
+#tab3-bg{
   background: linear-gradient(to right, #e5eee5, #9effab);;
 }
-#bootstrap-bg{
+#tab4-bg{
   background: linear-gradient(to right, #f3e8eb, #fad7e5);;
 }
 
