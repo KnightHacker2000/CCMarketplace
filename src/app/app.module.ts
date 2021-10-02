@@ -13,6 +13,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { PaymentService } from './services/contact.service';
 import { ShippingService } from './services/shipping.service';
 import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AboutComponent } from './about/about.component';
     SummaryComponent,
     ShippingformComponent,
     ConfirmationComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
