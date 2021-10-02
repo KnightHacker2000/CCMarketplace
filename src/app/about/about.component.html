@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+<nav aria-label="breadcrumb" class="shadow-sm p-3 mb-5 bg-white rounded">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/home">Home</a ></li>
+      <li class="breadcrumb-item active" aria-current="page">About</li>
+    </ol>
+</nav>
+ <h1>About Us</h1>
+
+<ul class="tabs">
+    <li class="tab">
+      <input class="radioClass" type="radio" name="tabs" checked id="tab1" (click)="check($event)">
+      <label for="tab1">
+          <i class='fas fa-users'></i>
+          <p>About Team</p>
+      </label>
+      <div class="bg" id="html-bg"></div>
+    </li>  
+     
+     <li class="tab">
+      <input class="radioClass" type="radio" name="tabs" id="tab2" (click)="check($event)"/>
+      <label for="tab2"><i class='fas fa-user-tie'></i> <p>Chaoyi Cheng</p></label>   
+      
+      <div class="bg" id="css-bg"></div>
+    </li>
+
+     <li class="tab">
+      <input class="radioClass" type="radio" name="tabs" id="tab3" (click)="check($event)"/>
+      <label for="tab3"> <i class="fas fa-user-tie"></i><p>Yifan Zhu</p></label>  
+
+       <div class="bg" id="js-bg"></div> 
+      
+    </li>
+     <li class="tab">
+      <input class="radioClass" type="radio" name="tabs" id="tab4" (click)="check($event)"/>
+      <label for="tab4"><i class="fas fa-user-tie"></i><p>Jiale Yu</p></label>   
+        
+       <div class="bg" id="bootstrap-bg"></div>
+       
+    </li>
+</ul>
+
+<div *ngIf="tab1">
+    <p>Our mission is to provide breakfast in bed</p>
+</div>
+<div *ngIf="tab2">
+    <p>This is the CEO</p>
+</div>
+<div *ngIf="tab3">
+    <p>This is the CTO</p>
+</div>
+<div *ngIf="tab4">
+    <p>This is the CFO</p>
+</div>
