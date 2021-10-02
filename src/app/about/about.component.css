@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+
 body{ 
 background-color:#0A4A8A;
 }
@@ -98,18 +101,38 @@ color:white;
   Background color for each different div
   =================================================*/
 #tab1-bg{
-  background-color:#a1cce9;
-}
-#tab2-bg{
-  background: linear-gradient(to right, #e5f0ef, #86d3ff);;
+  background:#ffffff;
 }
 #tab3-bg{
+  background: linear-gradient(to right, #e5f0ef, #86d3ff);;
+}
+#tab2-bg{
   background: linear-gradient(to right, #e5eee5, #9effab);;
 }
 #tab4-bg{
-  background: linear-gradient(to right, #f3e8eb, #fad7e5);;
+  background: linear-gradient(to top, #eefcb0, #f7a3a3);;
 }
 
-P { text-align: center }
+p{ text-align: center }
 
-/* .fa-html5::before{content:url("https://ibb.co/zJwgFpN")} */
+img {
+  display: block;  
+  margin: auto;
+  width: 35%;
+}
+
+.intro{
+  display:block;
+  margin-bottom: 30%;
+}
+.intro strong{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1em;
+}
+.intro p{
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.7em;
+}
+.quote{
+  font-style: oblique;
+}
