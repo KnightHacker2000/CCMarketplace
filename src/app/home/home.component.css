@@ -40,7 +40,7 @@ ngb-carousel .picsum-img-wrapper>img {
     flex-direction: column;
     -webkit-box-flex: 1;
     flex: 1 0 auto;
-    height: 300px;
+    height:max-content;
     width: 1000px;
 }
 section{
