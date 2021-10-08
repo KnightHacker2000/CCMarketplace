@@ -6,3 +6,12 @@ run project as Spring Boot app
 
 POST url: localhost:8080/order-processing/order
 Port: 8080
+
+
+The current settings work on my device. If you have any issues on running the project, please add following code in pom.xml
+
+<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+</dependency>
