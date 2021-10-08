@@ -1,5 +1,5 @@
 Install Spring Tool Suite 4 at https://spring.io/tools
-I'm using jdk 15.0.1 and spring tool suite 4 based on eclipse
+I'm using jdk 15.0.1 and spring tool suite 4 for eclipse
 
 Click File > open project from file system and open folder ccorder
 run project as Spring Boot app
