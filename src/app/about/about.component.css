@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+
+body{ 
+background-color:#0A4A8A;
+}
+h1{
+  color:rgb(0, 0, 0);
+  text-align:center;
+  margin-top:10%;
+}
+p {  
+  margin-top:0px;
+}
+
+.bg{
+  z-index: -1;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  opacity:0;
+}
+
+.tabs{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  text-align:center;
+}
+
+/*==================================================
+  Removing the default bullets and checkbox
+  =================================================*/
+.tabs .tab{ 
+   overflow: hidden;
+}
+
+.tabs .tab .radioClass{
+    display:none;   
+}
+
+/*==================================================
+  styling the icon and label
+  =================================================*/
+.fas{
+    font-size:75px;
+    width:85px;
+    height:85px;
+    color:  white;
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.3);
+    border-radius:50%;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.tabs .tab label {
+    display: block;
+    padding:4vw;
+    cursor: pointer;
+    color: grey; 
+}
+
+
+/*==================================================
+  Effects to show when mouse hovers over the menu
+  =================================================*/
+.fas:hover{
+  box-shadow: 0 0 0 14px rgba(255, 255, 255, 0.3);
+  background-color:rgba(255, 255, 255, 0.3);
+  
+}
+.fas:hover ~p{
+  margin-top:30px; 
+  color:white;
+  transition:all 1s;
+}
+
+/*==================================================
+  Effects to show when a radio is selected
+  =================================================*/
+.tabs>.tab .radioClass:checked + label>.fas{ 
+  
+  box-shadow: 0 0 0 14px #4DDFDC;
+  background-color:#4DDFDC;
+  color:black;
+  transform:scale(1.05);
+}
+.tabs>.tab .radioClass:checked + label {  
+color:white;
+}
+.tabs>.tab .radioClass:checked + label>p {  
+  margin-top:30px;
+}
+.tabs>.tab .radioClass:checked + label + .bg{
+  opacity:1;
+  transition:opacity 1s ease;
+}
+
+/*==================================================
+  Background color for each different div
+  =================================================*/
+#tab1-bg{
+  background:#ffffff;
+}
+#tab3-bg{
+  background: linear-gradient(to right, #e5f0ef, #86d3ff);;
+}
+#tab2-bg{
+  background: linear-gradient(to right, #e5eee5, #9effab);;
+}
+#tab4-bg{
+  background: linear-gradient(to top, #eefcb0, #f7a3a3);;
+}
+
+p{ text-align: center }
+
+img {
+  display: block;  
+  margin: auto;
+  width: 35%;
+}
+
+.intro{
+  display:block;
+  margin-bottom: 30%;
+}
+.intro strong{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1em;
+}
+.intro p{
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.7em;
+}
+.quote{
+  font-style: oblique;
+}

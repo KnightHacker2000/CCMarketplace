@@ -1,10 +1,13 @@
 #myVideo {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     position: fixed;
+    left: 0;
     right: 0;
+    top: 0;
     bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index:-1
+    z-index: -1;
 }
 
 ngb-carousel .picsum-img-wrapper {
@@ -13,19 +16,15 @@ ngb-carousel .picsum-img-wrapper {
     padding-top: 55%; /* Keep ratio for 900x500 images */
   }
   
-  ngb-carousel .picsum-img-wrapper>img {
+ngb-carousel .picsum-img-wrapper>img {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right:0;
-  }
-#big-box{
-    margin-top: 20px;
 }
-
 #main{
-    margin-top: 20px;
+    /* margin-top: 30px; */
     font-size: .875rem;
     line-height: 1.5;
     color: #000;
@@ -41,6 +40,8 @@ ngb-carousel .picsum-img-wrapper {
     flex-direction: column;
     -webkit-box-flex: 1;
     flex: 1 0 auto;
+    height:max-content;
+    width: 1000px;
 }
 section{
     font-size: .875rem;
@@ -58,7 +59,7 @@ section{
     justify-content: stretch;
     /* background-color: #000; */
     min-height: 100vh;
-    padding-top: 60px;
+    padding-top: 80px;
 }
 #video{
     font-size: .875rem;
