@@ -1,0 +1,8 @@
+Install Spring Tool Suite 4 at https://spring.io/tools#:~:text=Spring%20Tool%20Suite%204%20makes%20it%20easy%20to,quickly%20navigating%20source%20code%20is%20essential%20for%20coding.
+I'm using jdk 15.0.1 and spring tool suite 4 based on eclipse
+
+Click File > open project from file system and open folder ccorder
+run project as Spring Boot app
+
+POST url: localhost:8080/order-processing/order
+Port: 8080
