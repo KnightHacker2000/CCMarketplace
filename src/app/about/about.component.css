@@ -6,7 +6,7 @@ body{
 background-color:#0A4A8A;
 }
 h1{
-  color:rgb(0, 0, 0);
+  color:rgb(163, 146, 146);
   text-align:center;
   margin-top:10%;
 }
@@ -101,7 +101,7 @@ color:white;
   Background color for each different div
   =================================================*/
 #tab1-bg{
-  background:#ffffff;
+  background:#b5d9f1;
 }
 #tab3-bg{
   background: linear-gradient(to right, #e5f0ef, #86d3ff);;
@@ -134,5 +134,9 @@ img {
   font-size: 1.7em;
 }
 .quote{
+  text-align: center;
   font-style: oblique;
+  font-size: 1.5em;
+  margin-right: 400px;
+  margin-left: 400px;
 }
