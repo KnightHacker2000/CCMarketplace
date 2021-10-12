@@ -35,6 +35,7 @@ export class ContactFormComponent implements OnInit {
     this.cvv = (document.getElementById("securityCode") as HTMLInputElement).value;
     this.payment = new Payment(this.amount, this.cardNum, this.exp, this.cvv, this.name);
     this.paymentService.createPayment(this.payment);
+    this.orderService.submitOrder();
     this.router.navigate(['/summary']);
   }
 

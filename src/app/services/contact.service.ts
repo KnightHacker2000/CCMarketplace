@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Payment } from '../model/payment';
+import { OrderService } from './order.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,11 @@ import { Payment } from '../model/payment';
 export class PaymentService {
   private payment: Payment;
 
-  constructor() {}
+  constructor(private orderService: OrderService) {}
 
   createPayment(payment: Payment) {
     this.payment = payment;
+    this.orderService.setPaymentInfo(this.payment);
   }
 
   getPayment(): Payment {
