@@ -3,8 +3,7 @@ import { Item } from './item';
 export class Order {
     public itemArr: Array<Item> = [];
 
-    constructor(
-    ) {}
+    constructor() {}
 
     public createItemArr(itemArr: Array<Item>){
         this.itemArr = itemArr;

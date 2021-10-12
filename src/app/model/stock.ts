@@ -3,7 +3,8 @@ export class Stock {
   
     constructor(public name: string,
                 public description: string,
-                public code: string,
+                // public code: string,
+                public id: string,
                 public price: number,
                 public unit: string,
                 public imgsrc: string) {}

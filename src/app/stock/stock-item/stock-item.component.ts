@@ -4,13 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Stock } from 'src/app/model/stock';
 import { Order } from 'src/app/model/order';
 import { Item } from 'src/app/model/item';
+import { StockService } from 'src/app/services/stock.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
   selector: 'app-stock-item',
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class StockItemComponent implements OnInit, OnChanges, OnDestroy,
 DoCheck, AfterContentChecked,
@@ -27,11 +29,12 @@ AfterViewInit {
   public order: Order;
   public itemArr: Array<Item> = [];
   public stocks: Array<Stock>;
+  private stockSub: Subscription;
   // @Input() public stocks: Array<Stock>;
   // @Output() private addToCart: EventEmitter<Stock>;
 
 
-  constructor(private orderService: OrderService, private router: Router) { }
+  constructor(private stockService: StockService, private orderService: OrderService, private router: Router) { }
 
   onAddToCart(index: number) {
     // console.log('We are toggling the favorite state for this stock', event, i);
@@ -84,19 +87,23 @@ AfterViewInit {
 
   // lifecycle hooks
   ngOnInit() {
-    this.stocks = [
-      new Stock('Taro Milk Tea', "Taro! Taro! Taro!", "TMT", 15, "Cup", "../../assets/taro-milk-bubble-tea.jpeg"),
-      new Stock('Hong Kong Milk Tea', "OG Milk Tea", "HKMT", 10, "Cup", "../../assets/hong-kong-milk-tea.jpeg"),
-      new Stock('Caramel Pudding Milk Tea', "Fusion Tea!", "CPMT", 6, "Cup",  "../../assets/caramel.jpeg"),
-      new Stock('Mango Milkshake', "Fresh mango, Milk and Tea!", "MM", 7, "Cup", "../../assets/mango-milkshake.jpeg"),
-      new Stock('Americano Coffee', "Original American Flavor!", "AC", 8, "Cup", "../../assets/americano.jpeg")
-    ];
-
+    // this.stocks = [
+    //   new Stock('Taro Milk Tea', "Taro! Taro! Taro!", "TMT", 15, "Cup", "../../assets/taro-milk-bubble-tea.jpeg"),
+    //   new Stock('Hong Kong Milk Tea', "OG Milk Tea", "HKMT", 10, "Cup", "../../assets/hong-kong-milk-tea.jpeg"),
+    //   new Stock('Caramel Pudding Milk Tea', "Fusion Tea!", "CPMT", 6, "Cup",  "../../assets/caramel.jpeg"),
+    //   new Stock('Mango Milkshake', "Fresh mango, Milk and Tea!", "MM", 7, "Cup", "../../assets/mango-milkshake.jpeg"),
+    //   new Stock('Americano Coffee', "Original American Flavor!", "AC", 8, "Cup", "../../assets/americano.jpeg")
+    // ];
+    this.stockSub = this.stockService.getStocksUpdateListener()
+      .subscribe((stocks:Stock[])=>{
+        this.stocks = stocks;
+        console.log("[Angular Stock Component]: ",this.stocks)
+        for(let i = 0; i < 5; i++){
+          this.itemArr[i] = new Item(this.stocks[i].id,0);
+        }
+      });
     // initialize the order amount array
     this.amountArr = [0,0,0,0,0];
-    for(let i = 0; i < 5; i++){
-      this.itemArr[i] = new Item(this.stocks[i].code,0);
-    }
     this.order = new Order();
     
     // console.log('item arr: ',this.order.itemArr);
@@ -105,12 +112,26 @@ AfterViewInit {
 
   ngAfterViewInit(): void {
     // console.log('Stock Item Component - After View Init');
+    // console.log('Stock Item Component - After View Init, Stock Arr size: ',this.stocks.length);
+
   }
   ngAfterViewChecked(): void {
     // console.log('Stock Item Component - After View Checked');
+    // console.log('Stock Item Component - After View Checked, Stock Arr size: ',this.stocks.length);
+    this.stockSub = this.stockService.getStocksUpdateListener()
+      .subscribe((stocks:Stock[])=>{
+        this.stocks = stocks;
+        console.log("[Angular Stock Component]: ",this.stocks)
+        for(let i = 0; i < 5; i++){
+          this.itemArr[i] = new Item(this.stocks[i].id,0);
+        }
+      });
+
   }
   ngAfterContentInit(): void {
     // console.log('Stock Item Component - After Content Init');
+    // console.log('Stock Item Component - After Content Init, Stock Arr size: ',this.stocks.length);
+
   }
   ngAfterContentChecked(): void {
     // console.log('Stock Item Component - After Content Checked');
@@ -120,6 +141,7 @@ AfterViewInit {
   }
   ngOnDestroy(): void {
     // console.log('Stock Item Component - On Destroy');
+    this.stockSub.unsubscribe();
   }
   ngOnChanges(changes: SimpleChanges): void {
     // console.log('Stock Item Component - On Changes - ', changes);
