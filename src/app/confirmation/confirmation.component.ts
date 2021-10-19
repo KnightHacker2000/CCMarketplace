@@ -24,8 +24,8 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.order_response = this.orderService.order_response;
     console.log(this.order_response.response);
-    this.message_bold = "Order Complete!"
-    this.message_secondary = "3413515133"
+    // this.message_bold = "Order Complete!"
+    // this.message_secondary = "3413515133"
 
     
     if(this.order_response.response.code == "error"){

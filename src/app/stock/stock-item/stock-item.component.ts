@@ -107,17 +107,37 @@ AfterViewInit {
     this.order = new Order();
     
     // console.log('item arr: ',this.order.itemArr);
-   
+    console.log('Stock Item Component - After Init');
+
   } 
 
   ngAfterViewInit(): void {
     // console.log('Stock Item Component - After View Init');
-    // console.log('Stock Item Component - After View Init, Stock Arr size: ',this.stocks.length);
+    console.log('Stock Item Component - After View Init');
 
   }
   ngAfterViewChecked(): void {
-    // console.log('Stock Item Component - After View Checked');
+    console.log('Stock Item Component - After View Checked');
     // console.log('Stock Item Component - After View Checked, Stock Arr size: ',this.stocks.length);
+
+  }
+  ngAfterContentInit(): void {
+    // console.log('Stock Item Component - After Content Init');
+    console.log('Stock Item Component - After Content Init');
+
+  }
+  ngAfterContentChecked(): void {
+    console.log('Stock Item Component - After Content Checked');
+  }
+  ngDoCheck(): void {
+    console.log('Stock Item Component - Do Check');
+  }
+  ngOnDestroy(): void {
+    console.log('Stock Item Component - On Destroy');
+    this.stockSub.unsubscribe();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Stock Item Component - On Changes - ', changes);
     this.stockSub = this.stockService.getStocksUpdateListener()
       .subscribe((stocks:Stock[])=>{
         this.stocks = stocks;
@@ -126,25 +146,6 @@ AfterViewInit {
           this.itemArr[i] = new Item(this.stocks[i].id,0);
         }
       });
-
-  }
-  ngAfterContentInit(): void {
-    // console.log('Stock Item Component - After Content Init');
-    // console.log('Stock Item Component - After Content Init, Stock Arr size: ',this.stocks.length);
-
-  }
-  ngAfterContentChecked(): void {
-    // console.log('Stock Item Component - After Content Checked');
-  }
-  ngDoCheck(): void {
-    // console.log('Stock Item Component - Do Check');
-  }
-  ngOnDestroy(): void {
-    // console.log('Stock Item Component - On Destroy');
-    this.stockSub.unsubscribe();
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log('Stock Item Component - On Changes - ', changes);
   }
   
 }
