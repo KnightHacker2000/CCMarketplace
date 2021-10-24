@@ -5,6 +5,16 @@ var express = require('express');
 var app = express();
 var http = require('http');
 
+const {admin} = require('firebase-admin');
+const {serviceAccount} = require("/Users/musicloud/Documents/计算机/Code/CloudFirestore_Cred/ccmarketplace-329522-87bd96500675.json");
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+// initializeApp({
+//     credential: credential.cert(serviceAccount)
+// });
+initializeApp();
+const db = getFirestore();
+
 var stocks = [
     {
         name: 'Taro Milk Tea', 
@@ -48,6 +58,36 @@ var stocks = [
         imgsrc: "../../assets/americano.jpeg"
     }
 ]
+async function add(){
+    // for(item in stocks){
+        const docRef = db.collection('stocks').doc("TMT");
+
+        await docRef.set({
+            unit: "Cup"
+        });
+    // }
+}
+
+add();
+
+// const {Storage} = require('@google-cloud/storage');
+// const storage = new Storage();
+// // Makes an authenticated API request.
+// async function listBuckets() {
+//   try {
+//     const results = await storage.getBuckets();
+
+//     const [buckets] = results;
+
+//     console.log('Buckets:');
+//     buckets.forEach(bucket => {
+//       console.log(bucket.name);
+//     });
+//   } catch (err) {
+//     console.error('ERROR:', err);
+//   }
+// }
+// listBuckets();
 
 const availability = [
     {
