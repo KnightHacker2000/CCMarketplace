@@ -1,5 +1,27 @@
 // Use Express
 var express = require('express');
+// Use firebase db
+var admin = require("firebase-admin");
+var serviceAccount = require(__dirname + "/key/ccmarket-4302b-firebase-adminsdk-4cev2-283f17c743.json");
+// Initialize the app with a service account, granting admin privileges
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://ccmarket-4302b-default-rtdb.firebaseio.com"
+  });
+
+var db = admin.database();
+var db_count = -1;
+db.ref('count/length').get().then((snapshot) => {
+    if (snapshot.exists()) {
+        db_count = snapshot.val();
+
+    } else {
+        console.log("Count not found");
+    }
+    }).catch((error) => {
+        console.error(error);
+    });
+
 
 // Create new instance of the express server
 var app = express();
@@ -25,8 +47,14 @@ app.use((req,res,next)=>{
 app.post("/api/order",(req,res,next)=>{
     order = req.body;
     console.log(order.order.itemArr[0]);
+    console.log(order);
+    ordered_items = [];
     for(i=0; i<order.order.itemArr.length;i++){
         var item = order.order.itemArr[i];
+        if (item.amount > 0){
+            ordered_items.push(item);
+        }
+        
        var quant_avail =  availability.find(x => x.id == item.stock_code).quant;
        if(item.amount !=0 &&  item.amount > quant_avail){
             msg = {
@@ -39,14 +67,26 @@ app.post("/api/order",(req,res,next)=>{
        }
     }
     console.log(typeof msg);
+
+    
     if(typeof msg == 'undefined'){
-        msg = {
-            code: "3413515133"
+        order.order.itemArr = ordered_items;
+        console.log("new iteration: dbcount:" + db_count);
+        var path = 'orders/'.concat(db_count);
+        db.ref(path).set(order); //insert the new order in db
+
+        msg = { 
+            code: db_count  //return the unique confirmation number
         }
+        db_count = db_count + 1;
+        db.ref('count').update({
+            'length': db_count
+        });
     }
     res.status(201).json({
         response: msg
     }); // new resource created
+    msg = undefined; //set msg to undefined so it doesn't affect next post request
 });
 
 app.post('/api/availability',(req,res,next)=>{
@@ -58,3 +98,21 @@ app.post('/api/availability',(req,res,next)=>{
 });
 
 module.exports= app;
+
+
+
+function writeOrder(confirmation, itemList, cardNum, exp, cvv, name, postal, method, email, fee){
+    db.ref('orders/' + confirmation).set({  //use confirmation number as id
+        cardNum: cardNum,
+        exp: exp,
+        cvv: cvv,
+        name: name, 
+        postal: postal, 
+        method: method, 
+        email: email,
+        fee: fee
+    });
+
+    //TODO: set items
+    db.ref('orders/'+confirmation+'/items').set(itemList);
+}
