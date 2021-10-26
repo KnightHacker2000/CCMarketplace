@@ -20,6 +20,9 @@ export class StockService {
     .subscribe((stockData)=>{
       console.log(stockData.stocks);
         this.stocks = stockData.stocks;
+        for(let stock in this.stocks){
+          console.log(stock)
+        }
         this.stocksUpdated.next([...this.stocks]);
     }); 
   }

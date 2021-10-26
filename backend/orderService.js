@@ -3,14 +3,26 @@ var express = require('express');
 // Use firebase db
 var admin = require("firebase-admin");
 var serviceAccount = require(__dirname + "/key/ccmarket-4302b-firebase-adminsdk-4cev2-283f17c743.json");
+var http = require('http');
 // Initialize the app with a service account, granting admin privileges
-admin.initializeApp({
+var order_app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://ccmarket-4302b-default-rtdb.firebaseio.com"
-  });
+  }, "secondary");
 
-var db = admin.database();
+var db = order_app.database();
 var db_count = -1;
+
+var options = {
+	host: "localhost",
+    port:3000,
+	path: "/api/new_availability",
+	method: "POST",
+	headers: {
+		"Content-Type": "application/json"
+	}
+};
+
 db.ref('count/length').get().then((snapshot) => {
     if (snapshot.exists()) {
         db_count = snapshot.val();
@@ -82,11 +94,40 @@ app.post("/api/order",(req,res,next)=>{
         db.ref('count').update({
             'length': db_count
         });
+
+        ordered_items.forEach((item) => {
+            quantity = availability.find(x => x.id == item.stock_code).quant - item.amount
+            availability.find(x => x.id == item.stock_code).quant = quantity
+        })
+
+        console.log("new avail: ",availability)
+
+        // update stock service of the new availability
+        post_req = http.request(options, (res) => {
+        
+            res.setEncoding('utf8');
+            res.on('data', (chunk) => {
+                console.log(`BODY: ${chunk}`);
+            });
+            res.on('end', () => {
+                console.log('No more data in response.');
+            });
+                    
+        });
+            
+        post_req.on('error', (e) => {
+            console.error(`problem with request: ${e.message}`);
+        });
+        console.log(JSON.stringify(availability))
+        // write data to request body
+        post_req.write(JSON.stringify(availability));
+        post_req.end();
     }
     res.status(201).json({
         response: msg
     }); // new resource created
     msg = undefined; //set msg to undefined so it doesn't affect next post request
+    
 });
 
 app.post('/api/availability',(req,res,next)=>{

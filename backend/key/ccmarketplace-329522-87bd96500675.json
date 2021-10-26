@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ccmarketplace-329522",
+  "private_key_id": "87bd96500675f235caa3f5f52754f719f78ede74",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCX7ftXtnPcNap+\nmw4QvkNvu2OJVp4TkhlJBZEP1gZuNwCcxc1JfyOHfOLbkMKLhpfAH3Vt6emNt/ZY\nXFevYthT8wunlqQNkK1ukPfNoZ++tdbn+bL8HgVHiB4xsrI9+mLg9lkQtZwCrlVs\nwtdKEmZ/NuZ1yRG5Tow5JnXIC22eDb/1buPk7OtTV2FfOJXYhmY2BnKQiM2RTB6v\nZzC8Xno+tufJsfsTBe8uItyq7nZEnsa4LLs5GBt8oOpvTwuHYZp4nK2AE5Vo6yDW\nD4jJdWLchR+NJ6SlMAZ1gO5b2HH9O4QmTdn40lljIR3JTeLNNgj7xTJ0FwGEEVOE\nrFX8yCXXAgMBAAECggEAEEKSEdMfF0RPGPmzSatzQDQH9RzmEiYiuqPz4IQBcC5G\nzICG9gS7YrbE+MbHa3NeLluvj7HnIxm7Lb3ETKsBiAqNBsSijikbxqeRPdq8ZAbG\nF1GsDDuSSROSV7NOTD/N8VGsOpOVPNw3nEpGDFFn0tmnVJfOY8y6SSuKk3xVoQKh\nckafxgC3i9HsMS02Ezj8OdEq2roOkPVgpIP4XVPYb5KylgQNSL7qsgKKnQdvuFxV\nf1v0JFQG88gk6f2oMMaKrsEvrw+5fKR0Km72Qn3E57k1xhd5HDzpgYe4uF9nHEr/\nhiZuPmv1T6t0kguY/lxaS85zk5zadmBqZ+FUiHEZwQKBgQDPYtHSc8yK2QcpdEXt\nibAaeiGGT9oGY0hPu72v65GN7s4kUIzQtZBjjuSv3pLniOHvKY39IOgMkrISi1+8\nJUG/14xycb/A37+NH2ie2sBBwwqJoeJpe4sw+KexiT17LUa2+LDjXKeWT5/kJb5Z\ndkq9rfe4BIhNLqt1H/9xiJSt8QKBgQC7iz0AoTaoSX9ya88iooaad+If3YUMtW0V\nnd5SH45ySFlkVQ+63qgBsngJ6+P2GrRhKtp44hdD/U9kjObV+UYyeFX/62IwylvM\nZlB10HxcGXmCTvBKuLeHzYnO0B5zSHhZN52IbTkBkzioUgRd1b0QK6+ScwusHPB2\nEegT6QJoRwKBgC22jKWlHNsmR6vdk2Ruy0Cq1yTyCQ8LZ28b5Q4YEPeGQi5DCyce\nPnuTjdkuaJdc1uCO+ltnm37Z/yKTUkD4vWt6Kd04MZpkN6b122vYsDROt83qvyud\nLetXhC9gHws9ya6fVu5nCBHb71Ss9S5nIsZ4yHfpl9nbhbPFn9r4zj0hAoGBAIb9\nXddKMtFGtdliCCHh4gjlKXnONKpFHFNm4lMyK5HOyakSINRc14kBMK3TgK3v4s3d\nzoscEar6dV7mnHB/kCtbumsOvgpoXVLughOLETgpjfBhaUwfUNsK8ppN6t0H2Lg+\n88Dy/QlJMorVHhd8dS1ihGlhLZGg8uPJV8ac/QKZAoGAbxoqzQi4rA+dgGlJC4xJ\nUQZpJ9We6S9u2ynk77t4Af/5au5ShRCi/0gXwa/EAUSlq/rW7K1DocIS+XXZQRlR\nV7RWWkuk8PQTYD2yB9Y0brHg7uPpEE72PBGbs/wC9g0TdbFV005HR6K/BwCQBt1I\n1TXLJ/sUyXArCLH2jBQ1hiE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cc-service@ccmarketplace-329522.iam.gserviceaccount.com",
+  "client_id": "110587748062123754302",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cc-service%40ccmarketplace-329522.iam.gserviceaccount.com"
+}

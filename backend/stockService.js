@@ -1,3 +1,6 @@
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+
 // Use Express
 var express = require('express');
 
@@ -5,15 +8,22 @@ var express = require('express');
 var app = express();
 var http = require('http');
 
-const {admin} = require('firebase-admin');
-const {serviceAccount} = require("/Users/musicloud/Documents/计算机/Code/CloudFirestore_Cred/ccmarketplace-329522-87bd96500675.json");
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+var serviceAccount = require(__dirname + "/key/ccmarketplace-329522-87bd96500675.json");
+const stockBase = initializeApp({
+    credential: cert(serviceAccount)
+}, "[DEFAULT]");
+const db = getFirestore();
+
+
+// var admin = require("firebase-admin");
+
 // initializeApp({
 //     credential: credential.cert(serviceAccount)
 // });
-initializeApp();
-const db = getFirestore();
+// const firestore_app = admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount)
+// });
+// const db = admin.getFirestore(firestore_app);
 
 var stocks = [
     {
@@ -58,38 +68,8 @@ var stocks = [
         imgsrc: "../../assets/americano.jpeg"
     }
 ]
-async function add(){
-    // for(item in stocks){
-        const docRef = db.collection('stocks').doc("TMT");
 
-        await docRef.set({
-            unit: "Cup"
-        });
-    // }
-}
-
-add();
-
-// const {Storage} = require('@google-cloud/storage');
-// const storage = new Storage();
-// // Makes an authenticated API request.
-// async function listBuckets() {
-//   try {
-//     const results = await storage.getBuckets();
-
-//     const [buckets] = results;
-
-//     console.log('Buckets:');
-//     buckets.forEach(bucket => {
-//       console.log(bucket.name);
-//     });
-//   } catch (err) {
-//     console.error('ERROR:', err);
-//   }
-// }
-// listBuckets();
-
-const availability = [
+let availability = [
     {
         id: 'TMT',
         quant: 90
@@ -117,6 +97,56 @@ const availability = [
 
 ]
 
+async function add_stocks(){
+    col_ref = await db.collection('stocks')
+    // deleteCollection(db, col_ref, 10)
+    // console.log(typeof(stocks[0]))
+    stocks.forEach(item => col_ref.doc(item.id).set(item))
+}
+
+// add_stocks();
+
+async function add_avail(availability){
+    col_ref = await db.collection('avail')
+    // deleteCollection(db, col_ref, 10)
+    // console.log(typeof(stocks[0]))
+    availability.forEach(item => col_ref.doc(item.id).set(item))
+}
+// add_avail();
+
+
+async function deleteCollection(db, collectionRef, batchSize) {
+    const query = collectionRef.limit(batchSize);
+  
+    return new Promise((resolve, reject) => {
+      deleteQueryBatch(db, query, resolve).catch(reject);
+    });
+  }
+  
+  async function deleteQueryBatch(db, query, resolve) {
+    const snapshot = await query.get();
+  
+    const batchSize = snapshot.size;
+    if (batchSize === 0) {
+      // When there are no documents left, we are done
+      resolve();
+      return;
+    }
+  
+    // Delete documents in a batch
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+  
+    // Recurse on the next process tick, to avoid
+    // exploding the stack.
+    process.nextTick(() => {
+      deleteQueryBatch(db, query, resolve);
+    });
+  }
+
 var options = {
 	host: "localhost",
     port:8080,
@@ -139,14 +169,26 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.get("/api/stock", function (req, res) {
+app.get("/api/stock", async function (req, res) {
     // console.log("[Micro: Stock] -- stocks:", stocks);
+    stocks_from_DB = []
+    doc_ref = await db.collection('stocks').get()
+    // console.log(doc_ref)
+    doc_ref.docs.forEach((doc_snapshot) => stocks_from_DB.push(doc_snapshot.data()));
 
     res.status(200).json({ 
         message: "Stocks fetched successfully!",
-        stocks: stocks
+        stocks: stocks_from_DB
     });
 });
+
+avail_from_DB = []
+
+async function getAvail(){
+    doc_ref = await db.collection('avail').get()
+    // console.log(doc_ref)
+    doc_ref.docs.forEach((doc_snapshot) => avail_from_DB.push(doc_snapshot.data()));
+}
 
 const post_req = http.request(options, (res) => {
         
@@ -157,6 +199,9 @@ const post_req = http.request(options, (res) => {
     res.on('end', () => {
         console.log('No more data in response.');
     });
+
+    getAvail()
+    
 });
     
 post_req.on('error', (e) => {
@@ -166,6 +211,15 @@ post_req.on('error', (e) => {
 // write data to request body
 post_req.write(JSON.stringify(availability));
 post_req.end();
+
+app.post('/api/new_availability',(req,res)=>{
+    availability = req.body;
+    // console.log(availability.find(x => x.id == 'TMT').quant);
+    console.log("new availability",req.body)
+    res.status(201).json({
+        message: 'in stock service -- new availability received successfully from order service!',
+    }); // new resource created
+});
 
 app.get("/api/stocks/:id", function(req, res) {
     res.status(200).json(
