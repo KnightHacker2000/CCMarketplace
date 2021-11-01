@@ -120,13 +120,18 @@ app.post("/api/order",(req,res,next)=>{
         });
         console.log(JSON.stringify(availability))
         // write data to request body
+        //post_req.write(JSON.stringify(availability));
         post_req.write(JSON.stringify(availability));
         post_req.end();
+        
     }
     res.status(201).json({
         response: msg
     }); // new resource created
     msg = undefined; //set msg to undefined so it doesn't affect next post request
+    
+    
+
     
 });
 

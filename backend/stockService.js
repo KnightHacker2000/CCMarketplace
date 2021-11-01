@@ -14,7 +14,7 @@ const stockBase = initializeApp({
 }, "[DEFAULT]");
 const db = getFirestore();
 
-
+var bodyParser = require('body-parser');
 // var admin = require("firebase-admin");
 
 // initializeApp({
@@ -157,6 +157,12 @@ var options = {
 	}
 };
 
+app.use(bodyParser.text({
+    type: function(req) {
+      return 'text';
+    }
+  }));
+
 //resolves CORS
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');// no matter which domain the app sending the request is running on, we allow it to access our resources
@@ -203,7 +209,7 @@ const post_req = http.request(options, (res) => {
     getAvail()
     
 });
-    
+     
 post_req.on('error', (e) => {
     console.error(`problem with request: ${e.message}`);
 });
@@ -215,7 +221,7 @@ post_req.end();
 app.post('/api/new_availability',(req,res)=>{
     availability = req.body;
     // console.log(availability.find(x => x.id == 'TMT').quant);
-    console.log("new availability",req.body)
+    console.log("new availability stock service",req.body)
     res.status(201).json({
         message: 'in stock service -- new availability received successfully from order service!',
     }); // new resource created
