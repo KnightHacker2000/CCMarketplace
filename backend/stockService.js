@@ -14,7 +14,6 @@ const stockBase = initializeApp({
 }, "[DEFAULT]");
 const db = getFirestore();
 
-var bodyParser = require('body-parser');
 // var admin = require("firebase-admin");
 
 // initializeApp({
@@ -157,7 +156,7 @@ var options = {
 	}
 };
 
-app.use(bodyParser.text({
+app.use(express.text({
     type: function(req) {
       return 'text';
     }

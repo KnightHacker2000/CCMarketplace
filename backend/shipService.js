@@ -12,7 +12,6 @@
 // })();
 
 var express = require('express');
-var bodyParser = require('body-parser');
 
 var app = express();
 var options = {
@@ -25,11 +24,16 @@ var options = {
 	}
 };
 
-app.use(bodyParser.text({
+app.use(express.text({
   type: function(req) {
     return 'text';
   }
 }));
+// app.use(bodyParser.text({
+//   type: function(req) {
+//     return 'text';
+//   }
+// }));
 
 //resolves CORS
 // app.use((req,res,next)=>{
