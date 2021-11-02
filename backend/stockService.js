@@ -14,7 +14,6 @@ const stockBase = initializeApp({
 }, "[DEFAULT]");
 const db = getFirestore();
 
-var bodyParser = require('body-parser');
 // var admin = require("firebase-admin");
 
 // initializeApp({

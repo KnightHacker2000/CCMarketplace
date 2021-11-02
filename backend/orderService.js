@@ -135,15 +135,38 @@ app.post("/api/order",(req,res,next)=>{
         //post_req.write(JSON.stringify(availability));
         post_req.write(JSON.stringify(availability));
         post_req.end();
+
+        //send ship info to shipment service
+        var options_ship = {
+            url:"http://localhost:9000/api/ship",
+            rejectUnauthorized: false
+        };
+        const got = require('got');  //use GOT library
+        try{
+            (async () => {
+                const {body} = await got.post(options_ship, {
+                    json: {
+                        "email": order.shipping_info.email, 
+                        "name": order.payment_info.name,
+                        "address": order.shipping_info.postal,
+                        "business entity": order.shipping_info.method
+                    },
+                    responseType: 'json'
+                });
+            
+                console.log(body);
+            })();
+        }
+        catch (e) {
+            throw e.response ? e.response.body.message : e;
+           }
+            
         
     }
     res.status(201).json({
         response: msg
     }); // new resource created
     msg = undefined; //set msg to undefined so it doesn't affect next post request
-    
-    
-
     
 });
 
