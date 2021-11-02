@@ -149,7 +149,7 @@ async function deleteCollection(db, collectionRef, batchSize) {
 
 var options = {
 	host: "localhost",
-    port:8080,
+    port:3002,
 	path: "/api/availability",
 	method: "POST",
 	headers: {
@@ -184,6 +184,15 @@ app.get("/api/stock", async function (req, res) {
 
 avail_from_DB = []
 
+app.post('/api/new_availability',(req,res)=>{
+    availability = req.body;
+    // console.log(availability.find(x => x.id == 'TMT').quant);
+    console.log("new availability",req.body)
+    res.status(201).json({
+        message: 'in stock service -- new availability received successfully from order service!',
+    }); // new resource created
+});
+
 async function getAvail(){
     doc_ref = await db.collection('avail').get()
     // console.log(doc_ref)
@@ -211,15 +220,6 @@ post_req.on('error', (e) => {
 // write data to request body
 post_req.write(JSON.stringify(availability));
 post_req.end();
-
-app.post('/api/new_availability',(req,res)=>{
-    availability = req.body;
-    // console.log(availability.find(x => x.id == 'TMT').quant);
-    console.log("new availability",req.body)
-    res.status(201).json({
-        message: 'in stock service -- new availability received successfully from order service!',
-    }); // new resource created
-});
 
 app.get("/api/stocks/:id", function(req, res) {
     res.status(200).json(
