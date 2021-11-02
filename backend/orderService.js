@@ -114,11 +114,36 @@ app.post("/api/order",(req,res,next)=>{
 
         console.log("new avail: ",availability)
 
+        // update stock service of the new availability
+        post_req = http.request(options, (res) => {
+        
+            res.setEncoding('utf8');
+            res.on('data', (chunk) => {
+                console.log(`BODY: ${chunk}`);
+            });
+            res.on('end', () => {
+                console.log('No more data in response.');
+            });
+                    
+        });
+            
+        post_req.on('error', (e) => {
+            console.error(`problem with request: ${e.message}`);
+        });
+        console.log(JSON.stringify(availability))
+        // write data to request body
+        //post_req.write(JSON.stringify(availability));
+        post_req.write(JSON.stringify(availability));
+        post_req.end();
+        
     }
     res.status(201).json({
         response: msg
     }); // new resource created
     msg = undefined; //set msg to undefined so it doesn't affect next post request
+    
+    
+
     
 });
 
