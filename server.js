@@ -5,7 +5,7 @@ const payApp = require('./backend/paymentService')
 const shipApp = require('./backend/shipService')
 
 const port_stock = process.env.PORT || 3000;
-const port_pay = process.env.PORT || 3001;
+const port_pay = process.env.PORT || 7000;
 const port_order = process.env.PORT || 8080;
 const port_ship = process.env.PORT || 9000;
 

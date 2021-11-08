@@ -13,16 +13,27 @@ var order_app = admin.initializeApp({
 var db = order_app.database();
 var db_count = -1;
 
-
+// posting new payment to port 7000
 var options = {
 	host: "localhost",
-    port:3003,
-	path: "/api/new_payment",
+    port:3000,
+	path: "/api/new_availability",
 	method: "POST",
 	headers: {
 		"Content-Type": "application/json"
 	}
 };
+
+db.ref('count/length').get().then((snapshot) => {
+    if (snapshot.exists()) {
+        db_count = snapshot.val();
+
+    } else {
+        console.log("Count not found");
+    }
+    }).catch((error) => {
+        console.error(error);
+    });
 
 // Create new instance of the express server
 var app = express();
@@ -113,36 +124,63 @@ app.post("/api/order",(req,res,next)=>{
             availability.find(x => x.id == item.stock_code).quant = quantity
         })
 
-        console.log("new avail: ",availability)
+        // console.log("new avail: ",availability)
 
         // update stock service of the new availability
-        post_req = http.request(options, (res) => {
+        // post_req = http.request(options, (res) => {
         
-            res.setEncoding('utf8');
-            res.on('data', (chunk) => {
-                console.log(`BODY: ${chunk}`);
-            });
-            res.on('end', () => {
-                console.log('No more data in response.');
-            });
+        //     res.setEncoding('utf8');
+        //     res.on('data', (chunk) => {
+        //         console.log(`BODY: ${chunk}`);
+        //     });
+        //     res.on('end', () => {
+        //         console.log('No more data in response.');
+        //     });
                     
-        });
+        // });
             
-        post_req.on('error', (e) => {
-            console.error(`problem with request: ${e.message}`);
-        });
-        console.log(JSON.stringify(availability))
-        // write data to request body
-        //post_req.write(JSON.stringify(availability));
-        post_req.write(JSON.stringify(availability));
-        post_req.end();
+        // post_req.on('error', (e) => {
+        //     console.error(`problem with request: ${e.message}`);
+        // });
+        // console.log(JSON.stringify(availability))
+        // // write data to request body
+        // post_req.write(JSON.stringify(availability));
+        // post_req.write(JSON.stringify(availability));
+        // post_req.end();
+
+        //send payment info to payment service
+        var options_pay = {
+            url:"http://localhost:7000/api/new_payment",
+            rejectUnauthorized: false
+        };
+        const got = require('got');  //use GOT library
+        try{
+            (async () => {
+                const {body} = await got.post(options_pay, {
+                    json: {
+                        "amount": order.payment_info.amount, 
+                        "cardNum": order.payment_info.cardNum,
+                        "exp": order.payment_info.exp,
+                        "cvv": order.payment_info.cvv,
+                        "name": order.payment_info.name
+                    },
+                    responseType: 'json'
+                });
+            
+                console.log("in order service, payment posting section",body);
+            })();
+        }
+
+        catch (e) {
+            throw e.response ? e.response.body.message : e;
+           }
+
 
         //send ship info to shipment service
         var options_ship = {
             url:"http://localhost:9000/api/ship",
             rejectUnauthorized: false
         };
-        const got = require('got');  //use GOT library
         try{
             (async () => {
                 const {body} = await got.post(options_ship, {

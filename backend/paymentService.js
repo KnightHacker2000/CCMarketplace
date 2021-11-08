@@ -7,6 +7,12 @@ var http = require('http');
 
 var payment = []
 
+app.use(express.text({
+    type: function(req) {
+      return 'text';
+    }
+  }));
+
 //resolves CORS
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');// no matter which domain the app sending the request is running on, we allow it to access our resources
@@ -24,7 +30,7 @@ app.post('/api/new_payment',(req,res)=>{
     // console.log(availability.find(x => x.id == 'TMT').quant);
     console.log("new payment",req.body)
     res.status(201).json({
-        message: 'in payment service -- new paymnet received successfully from order service!',
+        message: 'in payment service -- new payment received successfully from order service!',
     }); // new resource created
 });
 

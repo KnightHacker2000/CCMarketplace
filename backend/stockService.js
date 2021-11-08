@@ -148,7 +148,7 @@ async function deleteCollection(db, collectionRef, batchSize) {
 
 var options = {
 	host: "localhost",
-    port:3002,
+    port:8080,
 	path: "/api/availability",
 	method: "POST",
 	headers: {
