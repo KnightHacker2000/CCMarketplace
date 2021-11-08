@@ -95,6 +95,7 @@ app.post("/api/order",(req,res,next)=>{
     
     if(typeof msg == 'undefined'){
         order.order.itemArr = ordered_items;
+        order.status = "need to process";
         console.log("new iteration: dbcount:" + db_count);
         var path = 'orders/'.concat(db_count);
         db.ref(path).set(order); //insert the new order in db
