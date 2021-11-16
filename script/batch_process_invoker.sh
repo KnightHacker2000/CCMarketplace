@@ -1,1 +1,0 @@
-/Library/Frameworks/Python.framework/Versions/3.10/bin/python3 /Users/yifan/Downloads/CCMarketplace/script/batch_process.py >> /tmp/test.txt
