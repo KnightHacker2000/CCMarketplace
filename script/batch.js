@@ -27,7 +27,7 @@ var db = order_app.database();
 var ref = db.ref('orders');
 
 // Read orders information from realtime db
-ref.orderByChild('status').equalTo("need to process").on('child_added', (snapshot) => {
+ref.orderByChild('status').equalTo("pending").on('child_added', (snapshot) => {
   console.log(snapshot.key);
   order_ids.push(snapshot.key);
   console.log(snapshot.child('order').child('itemArr').val());
@@ -55,16 +55,16 @@ ref.once('value', async function(){
         console.log('----------------------');
       }
   }
-
+  var return_update = null
   // update realtime db status
   for (i=0;i<order_ids.length;i++){
     var id = order_ids[i];
-    const return_update = db.ref('orders/'+id+'/status').set("completed");
+    return_update = db.ref('orders/'+id+'/status').set("completed");
     console.log("id status updated :", id);
     console.log(return_update);
     console.log('----------------------');
   }
-  exit(0);
+  
 });
 
 
