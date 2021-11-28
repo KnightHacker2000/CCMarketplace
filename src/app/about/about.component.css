@@ -12,6 +12,8 @@ h1{
 }
 p {  
   margin-top:0px;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 .bg{
@@ -135,4 +137,9 @@ img {
 }
 .quote{
   font-style: oblique;
+}
+
+.xxx{
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.7em;
 }

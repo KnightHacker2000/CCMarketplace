@@ -26,6 +26,54 @@ const db = getFirestore();
 
 var stocks = [
     {
+        name: 'BARISTA', 
+        description: "BARISTA", 
+        id: "BAR", 
+        price: 5, 
+        unit: "Bag", 
+        imgsrc: "../../assets/BARISTA.jpeg"
+    },
+    {
+        name: 'FLORIST', 
+        description: "FLORIST", 
+        id: "FLO", 
+        price: 5.5, 
+        unit: "Bag", 
+        imgsrc: "../../assets/FLORIST.jpeg"
+    },
+    {
+        name: 'GARDENER', 
+        description: "GARDENER", 
+        id: "GARD", 
+        price: 6, 
+        unit: "Bag", 
+        imgsrc: "../../assets/GARDENER.jpeg"
+    },
+    {
+        name: 'Sumatra', 
+        description: "Sumatra", 
+        id: "SUMA", 
+        price: 16, 
+        unit: "Bag", 
+        imgsrc: "../../assets/Sumatra.jpeg"
+    },
+    {
+        name: 'Todder', 
+        description: "Todder", 
+        id: "TODR", 
+        price: 10, 
+        unit: "Cup", 
+        imgsrc: "../../assets/Todder.jpeg"
+    },
+    {
+        name: 'Toddy', 
+        description: "Toddy", 
+        id: "TODY", 
+        price: 10.5, 
+        unit: "Cup", 
+        imgsrc: "../../assets/Toddy.jpeg"
+    },
+    {
         name: 'Taro Milk Tea', 
         description: "Taro! Taro! Taro!",  
         id: "TMT",
@@ -68,7 +116,31 @@ var stocks = [
     }
 ]
 
-let availability = [
+var availability = [
+    {
+        id: 'BAR',
+        quant: 100
+    },
+    {
+        id: 'FLO',
+        quant: 100
+    },
+    {
+        id: 'GARD',
+        quant: 100
+    },
+    {
+        id: 'SUMA',
+        quant: 100
+    },
+    {
+        id: 'TODR',
+        quant: 100
+    },
+    {
+        id: 'TODY',
+        quant: 100
+    },
     {
         id: 'TMT',
         quant: 90
@@ -105,7 +177,7 @@ async function add_stocks(){
 
 // add_stocks();
 
-async function add_avail(availability){
+async function add_avail(){
     col_ref = await db.collection('avail')
     // deleteCollection(db, col_ref, 10)
     // console.log(typeof(stocks[0]))

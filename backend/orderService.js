@@ -60,26 +60,26 @@ app.post("/api/order",(req,res,next)=>{
     order = req.body;
 
     // update stock service of the new availability
-    post_req = http.request(options, (res) => {
+    // post_req = http.request(options, (res) => {
         
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => {
-            console.log(`BODY: ${chunk}`);
-        });
-        res.on('end', () => {
-            console.log('No more data in response.');
-        });
+    //     res.setEncoding('utf8');
+    //     res.on('data', (chunk) => {
+    //         console.log(`BODY: ${chunk}`);
+    //     });
+    //     res.on('end', () => {
+    //         console.log('No more data in response.');
+    //     });
                 
-    });
+    // });
         
-    post_req.on('error', (e) => {
-        console.error(`problem with request: ${e.message}`);
-    });
+    // post_req.on('error', (e) => {
+    //     console.error(`problem with request: ${e.message}`);
+    // });
 
-    console.log(typeof(order.payment_info))
-    // write data to request body
-    post_req.write(JSON.stringify(order.payment_info));
-    post_req.end();
+    // console.log(typeof(order.payment_info))
+    // // write data to request body
+    // post_req.write(JSON.stringify(order.payment_info));
+    // post_req.end();
 
     console.log(order.order.itemArr[0]);
     console.log(order);
@@ -112,7 +112,7 @@ app.post("/api/order",(req,res,next)=>{
         db.ref(path).set(order); //insert the new order in db
 
         msg = { 
-            code: db_count  //return the unique confirmation number
+            code: "009778749" + db_count  //return the unique confirmation number
         }
         db_count = db_count + 1;
         db.ref('count').update({
