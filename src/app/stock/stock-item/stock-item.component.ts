@@ -98,12 +98,12 @@ AfterViewInit {
       .subscribe((stocks:Stock[])=>{
         this.stocks = stocks;
         console.log("[Angular Stock Component]: ",this.stocks)
-        for(let i = 0; i < 5; i++){
+        for(let i = 0; i < 11; i++){
           this.itemArr[i] = new Item(this.stocks[i].id,0);
         }
       });
     // initialize the order amount array
-    this.amountArr = [0,0,0,0,0];
+    this.amountArr = [0,0,0,0,0,0,0,0,0,0,0];
     this.order = new Order();
     
     // console.log('item arr: ',this.order.itemArr);
